@@ -1,0 +1,14 @@
+[package]
+name = "sshh"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.0.11", features = ["derive"] }
+win-exec = { path = "../win-exec" }
+
+[[bin]]
+name = "sshh"
+
+[[bin]]
+name = "scph"

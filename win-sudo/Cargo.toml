@@ -1,0 +1,11 @@
+[package]
+name = "win-sudo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+win-exec = { path = "../win-exec" }
+
+[[bin]]
+name = "sudo"
+path = "src/main.rs"

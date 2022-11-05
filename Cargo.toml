@@ -1,0 +1,10 @@
+[workspace]
+members = [
+    "win-exec",
+    "win-sudo",
+    "win-shell",
+    "win-file-hide",
+    "win-proxy",
+    "file-crypto",
+    "sshh",
+]

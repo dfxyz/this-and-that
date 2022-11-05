@@ -1,0 +1,18 @@
+[package]
+name = "file-crypto"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.0.11", features = ["derive"] }
+crossbeam-channel = "0.5"
+num_cpus = "1.13"
+rand = "0.8"
+aes-gcm = "0.10.1"
+sha2 = "0.10"
+
+[[bin]]
+name = "encrypt"
+
+[[bin]]
+name = "decrypt"
