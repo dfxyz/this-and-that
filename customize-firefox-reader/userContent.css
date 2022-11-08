@@ -1,0 +1,11 @@
+@-moz-document url-prefix(about:reader) {
+    :root {
+        --light-foreground: #406080 !important;
+        --light-background: #F4FFE8 !important;
+        --dark-foreground: #94A8A8 !important;
+        --dark-background: #202820 !important;
+    }
+    body.sans-serif {
+        font-family: 'Fira Code Retina', sans-serif !important;
+    }
+}
