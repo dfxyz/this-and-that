@@ -48,6 +48,11 @@ pub fn load_entries() -> Result<Vec<String>, String> {
                 if len == 0 {
                     break;
                 }
+                let line = line.trim();
+                if line.is_empty() {
+                    continue;
+                }
+                let line = line.to_string();
                 lines.push(line);
             }
             Err(e) => {
