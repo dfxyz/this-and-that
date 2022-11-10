@@ -8,3 +8,7 @@ members = [
     "file-crypto",
     "sshh",
 ]
+
+exclude = [
+    "rust-docker-image-example",
+]
