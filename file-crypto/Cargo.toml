@@ -4,12 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-clap = { version = "4.0", features = ["derive"] }
-crossbeam-channel = "0.5"
-num_cpus = "1.13"
-rand = "0.8"
-aes-gcm = "0.10"
-sha2 = "0.10"
+clap = { workspace = true, features = ["derive"] }
+crossbeam-channel.workspace = true
+num_cpus.workspace = true
+rand.workspace = true
+aes-gcm.workspace = true
+sha2.workspace = true
 
 [[bin]]
 name = "encrypt"

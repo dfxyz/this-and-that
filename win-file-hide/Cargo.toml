@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-clap = { version = "4.0", features = ["derive"] }
-winapi = { version = "0.3", features = ["winnt", "fileapi"] }
+clap = { workspace = true, features = ["derive"] }
+winapi = { workspace = true, features = ["winnt", "fileapi"] }
 
 [[bin]]
 name = "hide"

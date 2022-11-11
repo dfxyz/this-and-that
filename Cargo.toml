@@ -12,3 +12,12 @@ members = [
 exclude = [
     "rust-docker-image-example",
 ]
+
+[workspace.dependencies]
+clap = "4.0"
+crossbeam-channel = "0.5"
+num_cpus = "1.13"
+rand = "0.8"
+aes-gcm = "0.10"
+sha2 = "0.10"
+winapi = "0.3"
