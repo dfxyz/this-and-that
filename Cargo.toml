@@ -11,6 +11,7 @@ members = [
 
 exclude = [
     "rust-docker-image-example",
+    "async-logger",
 ]
 
 [workspace.dependencies]

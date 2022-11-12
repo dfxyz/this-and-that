@@ -1,0 +1,9 @@
+[package]
+name = "async-logger"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+log = "0.4"
+chrono = "0.4"
+crossbeam-channel = "0.5"
