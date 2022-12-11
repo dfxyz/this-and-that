@@ -1,6 +1,10 @@
 #!/usr/bin/bash
 
 if [[ ${#@} == 0 ]]; then
+    exec "/usr/bin/zsh"
+fi
+
+if [[ $1 == "-" ]]; then
     echo "keeping alive..."
     trap "done=1" SIGINT SIGTERM SIGQUIT
     done=0
