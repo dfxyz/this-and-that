@@ -2,7 +2,7 @@ use log::{debug, error, info, trace, warn};
 use log::LevelFilter::Trace;
 
 fn main() {
-    let _logger_handle = async_logger::init(Trace, None);
+    let _logger_handle = simple_async_logger::init(Trace);
     trace();
     debug();
     info();
