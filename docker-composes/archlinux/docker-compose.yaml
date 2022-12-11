@@ -1,0 +1,18 @@
+services:
+  archlinux:
+    build: ./build
+    container_name: archlinux
+    hostname: archlinux-in-docker
+    restart: unless-stopped
+    logging:
+      driver: none
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - common_volume:/data
+networks:
+  default:
+    name: common_network
+    external: true
+volumes:
+  common_volume:
+    external: true

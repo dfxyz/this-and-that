@@ -1,0 +1,14 @@
+services:
+  _:
+    image: busybox
+    network_mode: none
+    logging:
+      driver: none
+    volumes:
+      - ./VOLUME_NAME.tar.gz:/VOLUME_NAME.tar.gz
+      - VOLUME_NAME:/data
+    working_dir: /data
+    command: tar x -f /VOLUME_NAME.tar.gz
+volumes:
+  VOLUME_NAME:
+    external: true
