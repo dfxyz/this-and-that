@@ -1,0 +1,27 @@
+services:
+  elasticsearch:
+    image: bitnami/elasticsearch:8
+    restart: unless-stopped
+    volumes: 
+      - elasticsearch_data:/bitnami/elasticsearch
+  fluentd:
+    image: bitnami/fluentd:1
+    restart: unless-stopped
+    volumes:
+      - ./fluentd.conf:/opt/bitnami/fluentd/conf/fluentd.conf
+    ports:
+      - "127.0.0.1:24224:24224"
+    depends_on:
+      - elasticsearch
+  kibana:
+    image: bitnami/kibana:8
+    restart: unless-stopped
+    volumes:
+      - kibana_data:/bitnami/kibana
+    ports:
+      - "127.0.0.1:5601:5601"
+    depends_on:
+      - elasticsearch
+volumes:
+  elasticsearch_data:
+  kibana_data:
