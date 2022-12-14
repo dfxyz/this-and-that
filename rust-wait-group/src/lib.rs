@@ -56,20 +56,24 @@ impl Drop for WaitGroupToken {
 }
 
 #[cfg(test)]
-#[tokio::test]
-async fn test() {
+mod tests {
+    use std::sync::Arc;
     use std::sync::atomic::{AtomicUsize, Ordering};
-    const TASK_NUM: usize = 100;
-    let count = Arc::new(AtomicUsize::new(0));
-    let wg = WaitGroup::default();
-    for _ in 0..TASK_NUM {
-        let token = wg.new_token();
-        let count = count.clone();
-        tokio::spawn(async move {
-            let _token = token;
-            count.fetch_add(1, Ordering::AcqRel);
-        });
+
+    #[tokio::test]
+    async fn test() {
+        const TASK_NUM: usize = 100;
+        let count = Arc::new(AtomicUsize::new(0));
+        let wg = super::WaitGroup::default();
+        for _ in 0..TASK_NUM {
+            let token = wg.new_token();
+            let count = count.clone();
+            tokio::spawn(async move {
+                let _token = token;
+                count.fetch_add(1, Ordering::AcqRel);
+            });
+        }
+        wg.await;
+        assert_eq!(count.load(Ordering::Acquire), TASK_NUM);
     }
-    wg.await;
-    assert_eq!(count.load(Ordering::Acquire), TASK_NUM);
 }

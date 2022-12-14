@@ -7,4 +7,4 @@ edition = "2021"
 parking_lot = "0.12"
 
 [dev-dependencies]
-tokio = { version = "1", features = ["full"] }
+tokio = { version = "1", features = ["rt", "macros"] }

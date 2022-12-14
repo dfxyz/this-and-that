@@ -12,6 +12,7 @@ members = [
 exclude = [
     "rust-docker-image-example",
     "rust-wait-group",
+    "rust-context",
     "simple-async-logger",
 ]
 
