@@ -1,0 +1,17 @@
+services:
+  transmission:
+    build:
+      context: .
+      tags:
+        - dfxyz/transmission:latest
+    restart: unless-stopped
+    command: ["-a", "*.*.*.*", "-w", "/data"]
+    ports:
+      - 127.0.0.1:9091:9091
+      - 51413:51413
+    volumes:
+      - ./data:/data
+    logging:
+      driver: fluentd
+      options:
+        tag: transmission
