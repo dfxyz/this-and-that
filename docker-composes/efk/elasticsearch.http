@@ -1,0 +1,108 @@
+PUT _ilm/policy/fluentd
+{
+  "policy": {
+    "phases": {
+      "hot": {
+        "min_age": "0ms",
+        "actions": {
+          "set_priority": {
+            "priority": 100
+          }
+        }
+      },
+      "delete": {
+        "min_age": "7d",
+        "actions": {
+          "delete": {
+            "delete_searchable_snapshot": true
+          }
+        }
+      }
+    }
+  }
+}
+
+PUT _ingest/pipeline/fluentd
+{
+  "processors": [
+    {
+      "grok": {
+        "field": "log",
+        "patterns": [
+          "%{TIMESTAMP_ISO8601:datetime}\\|%{NOPIPE:level}\\|%{NOPIPE:caller}\\|(?<message>.*)"
+        ],
+        "pattern_definitions": {
+          "NOPIPE": "[^|]*"
+        }
+      }
+    },
+    {
+      "remove": {
+        "field": "log"
+      }
+    }
+  ],
+  "on_failure": [
+    {
+      "set": {
+        "field": "datetime",
+        "copy_from": "@timestamp",
+        "ignore_empty_value": true,
+        "ignore_failure": true
+      }
+    },
+    {
+      "rename": {
+        "field": "log",
+        "target_field": "message",
+        "ignore_missing": true,
+        "ignore_failure": true
+      }
+    }
+  ]
+}
+
+PUT _index_template/fluentd
+{
+  "index_patterns": ["fluentd-*"],
+  "template": {
+    "settings": {
+      "index.default_pipeline": "fluentd",
+      "index.lifecycle.name": "fluentd"
+    },
+    "mappings": {
+      "dynamic": true,
+      "date_detection": true,
+      "dynamic_date_formats": ["date_time"],
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "datetime": {
+          "type": "date"
+        },
+        "level": {
+          "type": "keyword"
+        },
+        "caller": {
+          "type": "text"
+        },
+        "message": {
+          "type": "text"
+        },
+        "tag": {
+          "type": "keyword"
+        },
+        "source": {
+          "type": "keyword"
+        },
+        "container_id": {
+          "type": "keyword"
+        },
+        "container_name": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
