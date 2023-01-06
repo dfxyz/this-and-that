@@ -10,8 +10,11 @@ services:
       - 127.0.0.1:9091:9091
       - 51413:51413
     volumes:
+      - transmission_data:/root/.config/transmission-daemon
       - ./data:/data
     logging:
       driver: fluentd
       options:
         tag: transmission
+volumes:
+  transmission_data:
