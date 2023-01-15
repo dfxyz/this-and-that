@@ -68,7 +68,8 @@ PUT _index_template/fluentd
   "template": {
     "settings": {
       "index.default_pipeline": "fluentd",
-      "index.lifecycle.name": "fluentd"
+      "index.lifecycle.name": "fluentd",
+      "index.number_of_replicas": 0
     },
     "mappings": {
       "dynamic": true,
