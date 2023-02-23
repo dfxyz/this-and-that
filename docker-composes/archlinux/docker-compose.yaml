@@ -1,9 +1,0 @@
-services:
-  archlinux:
-    container_name: archlinux
-    hostname: archlinux-in-docker
-    build:
-      context: ./build
-      tags:
-        - dfxyz/archlinux:latest
-    command: ["-"]
