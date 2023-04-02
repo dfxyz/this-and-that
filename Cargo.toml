@@ -13,7 +13,6 @@ exclude = [
     "rust-docker-image-example",
     "rust-wait-group",
     "rust-context",
-    "simple-async-logger",
     "rust-flutter-ffi-example/rust",
 ]
 
